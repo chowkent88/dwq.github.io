@@ -1,1 +1,844 @@
-my public page is https://chowkent88.github.io/dwq.github.io/testpage.html how to change it to https://dwq.github.io/
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conch Canada - Window Quote Calculator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header Styles - Updated to match Conch Canada website (grey) */
+        header {
+            background: #f8f9fa;
+            color: #333;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+        
+        .logo img {
+            height: 40px;
+        }
+        
+        .logo h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #2c5a8a;
+        }
+        
+        .contact-info {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            color: #6c757d;
+        }
+        
+        .contact-item i {
+            color: #2c5a8a;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(26, 58, 95, 0.85), rgba(26, 58, 95, 0.9)), url('https://images.unsplash.com/photo-1628745277897-d2e1d2b6eb5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .hero h2 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+            padding: 0 10px;
+        }
+        
+        .hero p {
+            font-size: 1rem;
+            max-width: 100%;
+            margin: 0 auto 20px;
+            padding: 0 15px;
+        }
+        
+        /* Main Content */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+            padding: 30px 0;
+        }
+        
+        /* Window Types */
+        .window-types {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .window-category {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+            width: 100%;
+        }
+        
+        .window-category h3 {
+            color: #1a3a5f;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e9ecef;
+            font-size: 1.3rem;
+        }
+        
+        .series-options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+        
+        .series-option {
+            border: 2px solid #e9ecef;
+            border-radius: 6px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        
+        .series-option:hover {
+            border-color: #2c5a8a;
+        }
+        
+        .series-option.selected {
+            border-color: #2c5a8a;
+            background-color: #f0f7ff;
+        }
+        
+        .series-name {
+            font-weight: 600;
+            color: #1a3a5f;
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+        
+        .series-price {
+            font-weight: bold;
+            color: #e74c3c;
+            font-size: 1.1rem;
+        }
+        
+        .series-features {
+            font-size: 0.85rem;
+            color: #6c757d;
+            margin-top: 8px;
+        }
+        
+        /* Calculator Section */
+        .calculator {
+            background: white;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+            width: 100%;
+        }
+        
+        .calculator h2 {
+            color: #1a3a5f;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #e9ecef;
+            font-size: 1.4rem;
+        }
+        
+        .measurements {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .input-group {
+            margin-bottom: 15px;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #1a3a5f;
+        }
+        
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+        
+        .input-group input:focus {
+            border-color: #2c5a8a;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(44, 90, 138, 0.1);
+        }
+        
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            background: #2c5a8a;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 10px;
+            text-align: center;
+        }
+        
+        .btn:hover {
+            background: #1a3a5f;
+        }
+        
+        .btn-danger {
+            background: #e74c3c;
+        }
+        
+        .btn-danger:hover {
+            background: #c0392b;
+        }
+        
+        .btn-success {
+            background: #27ae60;
+        }
+        
+        .btn-success:hover {
+            background: #219653;
+        }
+        
+        /* Quote Section */
+        .quote-section {
+            background: white;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+            width: 100%;
+            overflow-x: auto;
+        }
+        
+        .quote-section h2 {
+            color: #1a3a5f;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #e9ecef;
+            font-size: 1.4rem;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            min-width: 450px;
+        }
+        
+        th, td {
+            padding: 10px 8px;
+            text-align: left;
+            border-bottom: 1px solid #e9ecef;
+            font-size: 0.85rem;
+        }
+        
+        th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+            color: #1a3a5f;
+        }
+        
+        /* Optimized column widths - Removed Dimensions column */
+        .series-col {
+            width: 18%;
+            min-width: 80px;
+        }
+        
+        .area-col {
+            width: 15%;
+            min-width: 70px;
+        }
+        
+        .quantity-col {
+            width: 12%;
+            min-width: 50px;
+        }
+        
+        .price-col {
+            width: 20%;
+            min-width: 90px;
+        }
+        
+        .total-col {
+            width: 20%;
+            min-width: 90px;
+        }
+        
+        .action-col {
+            width: 10%;
+            min-width: 40px;
+        }
+        
+        .delete-btn {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 5px 8px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            transition: background 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 26px;
+            height: 26px;
+        }
+        
+        .delete-btn:hover {
+            background: #c0392b;
+        }
+        
+        .total-cost {
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        
+        .total-cost h3 {
+            color: #1a3a5f;
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+        
+        .cost {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #e74c3c;
+        }
+        
+        .empty-quote {
+            text-align: center;
+            padding: 30px;
+            color: #6c757d;
+            font-style: italic;
+            background: #f8f9fa;
+            border-radius: 6px;
+        }
+        
+        /* Footer */
+        footer {
+            background: #1a3a5f;
+            color: white;
+            padding: 30px 0;
+            margin-top: 40px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .footer-section p, .footer-section a {
+            color: #b8c7d9;
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 25px;
+            margin-top: 25px;
+            border-top: 1px solid #2c5a8a;
+            color: #b8c7d9;
+            font-size: 0.85rem;
+        }
+        
+        /* Responsive Design */
+        /* Tablet Styles */
+        @media (min-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+            
+            .logo h1 {
+                font-size: 1.6rem;
+            }
+            
+            .hero {
+                padding: 50px 0;
+            }
+            
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .main-content {
+                grid-template-columns: 1fr 1fr;
+                gap: 30px;
+            }
+            
+            .series-options {
+                grid-template-columns: 1fr 1fr;
+                gap: 15px;
+            }
+            
+            .measurements {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            table {
+                min-width: auto;
+            }
+            
+            th, td {
+                padding: 12px 10px;
+                font-size: 0.9rem;
+            }
+        }
+        
+        /* Desktop Styles */
+        @media (min-width: 992px) {
+            .footer-content {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+        }
+        
+        /* Small phone adjustments */
+        @media (max-width: 380px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .contact-info {
+                justify-content: center;
+            }
+            
+            .logo {
+                justify-content: center;
+            }
+            
+            .hero h2 {
+                font-size: 1.6rem;
+            }
+            
+            .calculator, .window-category, .quote-section {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-home fa-2x" style="color: #2c5a8a;"></i>
+                    <h1>Conch Canada Windows</h1>
+                </div>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>1-800-WINDOWS</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@conchcanada.com</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>Premium Window Solutions</h2>
+            <p>Get an instant quote for our high-quality vinyl and aluminum window systems</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="main-content">
+            <!-- Left Column - Calculator -->
+            <div class="calculator-column">
+                <div class="window-types">
+                    <!-- Vinyl Window Options -->
+                    <div class="window-category">
+                        <h3>Vinyl Window Series</h3>
+                        <div class="series-options" id="vinyl-options">
+                            <div class="series-option selected" data-series="es65" data-price="85">
+                                <div class="series-name">ES65 Series</div>
+                                <div class="series-price">$85 per m²</div>
+                                <div class="series-features">Standard efficiency, great value</div>
+                            </div>
+                            <div class="series-option" data-series="es75" data-price="95">
+                                <div class="series-name">ES75 Series</div>
+                                <div class="series-price">$95 per m²</div>
+                                <div class="series-features">Enhanced insulation, mid-range</div>
+                            </div>
+                            <div class="series-option" data-series="es80" data-price="110">
+                                <div class="series-name">ES80 Series</div>
+                                <div class="series-price">$110 per m²</div>
+                                <div class="series-features">Premium efficiency, triple pane ready</div>
+                            </div>
+                            <div class="series-option" data-series="es90" data-price="130">
+                                <div class="series-name">ES90 Series</div>
+                                <div class="series-price">$130 per m²</div>
+                                <div class="series-features">Maximum performance, commercial grade</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Aluminum Window Options -->
+                    <div class="window-category">
+                        <h3>Aluminum Window Series</h3>
+                        <div class="series-options" id="aluminum-options">
+                            <div class="series-option" data-series="cn75" data-price="120">
+                                <div class="series-name">CN75 Series</div>
+                                <div class="series-price">$120 per m²</div>
+                                <div class="series-features">Standard commercial, slim profile</div>
+                            </div>
+                            <div class="series-option" data-series="cn85" data-price="140">
+                                <div class="series-name">CN85 Series</div>
+                                <div class="series-price">$140 per m²</div>
+                                <div class="series-features">Enhanced thermal break, mid-range</div>
+                            </div>
+                            <div class="series-option" data-series="cn100" data-price="160">
+                                <div class="series-name">CN100 Series</div>
+                                <div class="series-price">$160 per m²</div>
+                                <div class="series-features">High performance, premium residential</div>
+                            </div>
+                            <div class="series-option" data-series="cn105" data-price="185">
+                                <div class="series-name">CN105 Series</div>
+                                <div class="series-price">$185 per m²</div>
+                                <div class="series-features">Maximum durability, commercial grade</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="calculator">
+                    <h2>Window Measurements</h2>
+                    
+                    <div class="measurements">
+                        <div class="input-group">
+                            <label for="width">Width (meters)</label>
+                            <input type="number" id="width" min="0.1" step="0.01" value="2.00">
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="height">Height (meters)</label>
+                            <input type="number" id="height" min="0.1" step="0.01" value="2.00">
+                        </div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="quantity">Quantity</label>
+                        <input type="number" id="quantity" min="1" value="3">
+                    </div>
+                    
+                    <button class="btn btn-success" id="add-window">
+                        <i class="fas fa-plus-circle"></i> Add Window to Quote
+                    </button>
+                    <button class="btn btn-danger" id="clear-all">
+                        <i class="fas fa-trash-alt"></i> Clear All Windows
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Right Column - Quote -->
+            <div class="quote-section">
+                <h2>Your Window Quote</h2>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="series-col">Series</th>
+                            <th class="area-col">Area</th>
+                            <th class="quantity-col">Qty</th>
+                            <th class="price-col">Price/m²</th>
+                            <th class="total-col">Total</th>
+                            <th class="action-col"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="quote-items">
+                        <!-- Window items will be added here dynamically -->
+                    </tbody>
+                </table>
+                
+                <div class="total-cost">
+                    <h3>Total Estimated Cost</h3>
+                    <div class="cost" id="total-cost">$0.00</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About Conch Canada</h3>
+                    <p>We provide high-quality window solutions for residential and commercial properties across Canada since 1995.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Window Street, Toronto, ON</p>
+                    <p><i class="fas fa-phone"></i> 1-800-WINDOWS</p>
+                    <p><i class="fas fa-envelope"></i> info@conchcanada.com</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="#">Our Products</a>
+                    <a href="#">Installation Services</a>
+                    <a href="#">Warranty Information</a>
+                    <a href="#">Contact Us</a>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2023 Conch Canada Windows. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // DOM Elements
+            const vinylOptions = document.getElementById('vinyl-options');
+            const aluminumOptions = document.getElementById('aluminum-options');
+            const widthInput = document.getElementById('width');
+            const heightInput = document.getElementById('height');
+            const quantityInput = document.getElementById('quantity');
+            const addWindowBtn = document.getElementById('add-window');
+            const clearAllBtn = document.getElementById('clear-all');
+            const quoteItems = document.getElementById('quote-items');
+            const totalCost = document.getElementById('total-cost');
+            
+            // State
+            let selectedSeries = 'es65';
+            let selectedPrice = 85;
+            let selectedType = 'vinyl';
+            let windows = [];
+            
+            // Event Listeners
+            vinylOptions.addEventListener('click', function(e) {
+                const option = e.target.closest('.series-option');
+                if (option) {
+                    // Remove selected class from all vinyl options
+                    document.querySelectorAll('#vinyl-options .series-option').forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    
+                    // Add selected class to clicked option
+                    option.classList.add('selected');
+                    
+                    // Remove selected class from all aluminum options
+                    document.querySelectorAll('#aluminum-options .series-option').forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    
+                    // Update selected series and price
+                    selectedSeries = option.getAttribute('data-series');
+                    selectedPrice = parseFloat(option.getAttribute('data-price'));
+                    selectedType = 'vinyl';
+                }
+            });
+            
+            aluminumOptions.addEventListener('click', function(e) {
+                const option = e.target.closest('.series-option');
+                if (option) {
+                    // Remove selected class from all aluminum options
+                    document.querySelectorAll('#aluminum-options .series-option').forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    
+                    // Add selected class to clicked option
+                    option.classList.add('selected');
+                    
+                    // Remove selected class from all vinyl options
+                    document.querySelectorAll('#vinyl-options .series-option').forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    
+                    // Update selected series and price
+                    selectedSeries = option.getAttribute('data-series');
+                    selectedPrice = parseFloat(option.getAttribute('data-price'));
+                    selectedType = 'aluminum';
+                }
+            });
+            
+            addWindowBtn.addEventListener('click', addWindowToQuote);
+            clearAllBtn.addEventListener('click', clearAllWindows);
+            
+            // Functions
+            function addWindowToQuote() {
+                const width = parseFloat(widthInput.value);
+                const height = parseFloat(heightInput.value);
+                const quantity = parseInt(quantityInput.value);
+                
+                if (isNaN(width) || isNaN(height) || isNaN(quantity) || width <= 0 || height <= 0 || quantity <= 0) {
+                    alert('Please enter valid measurements and quantity');
+                    return;
+                }
+                
+                const area = width * height;
+                const total = area * selectedPrice * quantity;
+                
+                const window = {
+                    type: selectedType,
+                    series: selectedSeries.toUpperCase(),
+                    width: width.toFixed(2),
+                    height: height.toFixed(2),
+                    area: area.toFixed(2),
+                    quantity: quantity,
+                    pricePerM2: selectedPrice,
+                    total: total.toFixed(2)
+                };
+                
+                windows.push(window);
+                renderQuoteItems();
+                calculateTotal();
+            }
+            
+            function renderQuoteItems() {
+                if (windows.length === 0) {
+                    quoteItems.innerHTML = '<tr><td colspan="6" class="empty-quote">No windows added to quote yet</td></tr>';
+                    return;
+                }
+                
+                quoteItems.innerHTML = '';
+                
+                windows.forEach((window, index) => {
+                    const row = document.createElement('tr');
+                    
+                    row.innerHTML = `
+                        <td class="series-col">${window.series}</td>
+                        <td class="area-col">${window.area} m²</td>
+                        <td class="quantity-col">${window.quantity}</td>
+                        <td class="price-col">$${window.pricePerM2.toFixed(2)}</td>
+                        <td class="total-col">$${window.total}</td>
+                        <td class="action-col"><button class="delete-btn" data-index="${index}"><i class="fas fa-times"></i></button></td>
+                    `;
+                    
+                    quoteItems.appendChild(row);
+                });
+                
+                // Add event listeners to delete buttons
+                document.querySelectorAll('.delete-btn').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const index = parseInt(this.getAttribute('data-index'));
+                        windows.splice(index, 1);
+                        renderQuoteItems();
+                        calculateTotal();
+                    });
+                });
+            }
+            
+            function calculateTotal() {
+                const total = windows.reduce((sum, window) => sum + parseFloat(window.total), 0);
+                totalCost.textContent = `$${total.toFixed(2)}`;
+            }
+            
+            function clearAllWindows() {
+                windows = [];
+                renderQuoteItems();
+                calculateTotal();
+            }
+            
+            // Initialize
+            renderQuoteItems();
+            calculateTotal();
+        });
+    </script>
+</body>
+</html>
