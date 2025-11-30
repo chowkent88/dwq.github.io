@@ -3,283 +3,232 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spinner Test Page</title>
+    <title>iOS Safari Number Spinner Fix</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
         body {
-            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-            color: #333;
-            min-height: 100vh;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            max-width: 500px;
+            margin: 0 auto;
         }
         
-        .container {
-            max-width: 800px;
-            width: 90%;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            padding: 30px;
-            text-align: center;
+        .solution {
+            margin: 30px 0;
+            padding: 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
         }
         
-        h1 {
-            color: #2575fc;
-            margin-bottom: 20px;
-            font-size: 2.5rem;
+        h1, h2 {
+            color: #333;
         }
         
-        p {
-            margin-bottom: 25px;
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: #555;
-        }
-        
-        .button-group {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin: 25px 0;
-            flex-wrap: wrap;
-        }
-        
-        button {
-            padding: 12px 25px;
-            border: none;
-            border-radius: 50px;
-            background: #2575fc;
-            color: white;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 10px rgba(37, 117, 252, 0.3);
-        }
-        
-        button:hover {
-            background: #1a68e3;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(37, 117, 252, 0.4);
-        }
-        
-        button:active {
-            transform: translateY(0);
-        }
-        
-        button.secondary {
-            background: #6a11cb;
-            box-shadow: 0 4px 10px rgba(106, 17, 203, 0.3);
-        }
-        
-        button.secondary:hover {
-            background: #5a0db3;
-            box-shadow: 0 6px 15px rgba(106, 17, 203, 0.4);
-        }
-        
-        .spinner-container {
-            position: fixed;
-            top: 0;
-            left: 0;
+        .number-input {
             width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 9999;
+            padding: 15px;
+            font-size: 18px;
+            border: 2px solid #007AFF;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+        
+        /* Solution 1: Force spinner appearance */
+        .force-spinner {
+            -webkit-appearance: textfield;
+            appearance: textfield;
+        }
+        
+        /* Solution 2: Custom spinner fallback */
+        .custom-spinner-wrapper {
+            position: relative;
+            width: 100%;
+        }
+        
+        .custom-spinner-wrapper input {
+            padding-right: 80px;
+        }
+        
+        .custom-buttons {
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            transform: translateY(-50%);
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
+            height: 80%;
+            width: 30px;
         }
         
-        .spinner-container.active {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        .spinner {
-            border: 5px solid rgba(255, 255, 255, 0.3);
-            border-top: 5px solid #fff;
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            animation: spin 1s linear infinite;
-            margin-bottom: 20px;
-        }
-        
-        .spinner-text {
+        .custom-btn {
+            flex: 1;
+            background: #007AFF;
             color: white;
-            font-size: 1.2rem;
-            font-weight: 500;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 12px;
         }
         
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        .custom-btn:first-child {
+            border-radius: 5px 5px 0 0;
         }
         
-        .code-block {
-            background: #f5f7fa;
-            border-radius: 8px;
-            padding: 20px;
-            margin-top: 30px;
-            text-align: left;
-            overflow-x: auto;
-            border-left: 4px solid #2575fc;
+        .custom-btn:last-child {
+            border-radius: 0 0 5px 5px;
         }
         
-        .code-block h3 {
-            margin-bottom: 10px;
-            color: #2575fc;
+        .custom-btn:active {
+            background: #0056CC;
         }
         
-        pre {
-            white-space: pre-wrap;
-            color: #333;
-            line-height: 1.5;
+        /* Solution 3: Input mode for better keyboard */
+        .tel-input {
+            -webkit-appearance: none;
+            appearance: none;
         }
         
-        .status {
-            margin-top: 20px;
+        .info {
+            background: #f0f8ff;
             padding: 15px;
             border-radius: 8px;
-            font-weight: 600;
-            display: none;
-        }
-        
-        .status.success {
-            background: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-            display: block;
-        }
-        
-        .status.error {
-            background: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-            display: block;
-        }
-        
-        @media (max-width: 600px) {
-            .container {
-                padding: 20px;
-            }
-            
-            h1 {
-                font-size: 2rem;
-            }
-            
-            .button-group {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            button {
-                width: 100%;
-                max-width: 250px;
-            }
+            margin: 10px 0;
+            border-left: 4px solid #007AFF;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Spinner Test Page</h1>
-        <p>This page demonstrates a working spinner implementation. Click the buttons below to test the spinner functionality.</p>
-        
-        <div class="button-group">
-            <button id="showSpinner">Show Spinner</button>
-            <button id="hideSpinner" class="secondary">Hide Spinner</button>
-            <button id="autoSpinner" class="secondary">Auto Show/Hide (3s)</button>
-        </div>
-        
-        <div class="status" id="statusMessage"></div>
-        
-        <div class="code-block">
-            <h3>Spinner Implementation Code</h3>
-            <pre>
-// HTML
-&lt;div class="spinner-container" id="spinner"&gt;
-    &lt;div class="spinner"&gt;&lt;/div&gt;
-    &lt;div class="spinner-text"&gt;Loading...&lt;/div&gt;
-&lt;/div&gt;
+    <h1>iOS Safari Number Spinner Solutions</h1>
+    
+    <div class="info">
+        <strong>Note:</strong> Safari on iOS often hides number spinners by default. Try these solutions:
+    </div>
 
-// CSS (see style section above)
-
-// JavaScript
-function showSpinner() {
-    document.getElementById('spinner').classList.add('active');
-}
-
-function hideSpinner() {
-    document.getElementById('spinner').classList.remove('active');
-}
-
-// Event listeners
-document.getElementById('showSpinner').addEventListener('click', showSpinner);
-document.getElementById('hideSpinner').addEventListener('click', hideSpinner);
-            </pre>
+    <!-- Solution 1: Force spinner with CSS -->
+    <div class="solution">
+        <h2>Solution 1: Force Native Spinner</h2>
+        <p>Using CSS to force the spinner appearance:</p>
+        <input type="number" 
+               class="number-input force-spinner" 
+               value="0" 
+               min="0" 
+               max="100" 
+               step="1"
+               placeholder="Try the spinner">
+        <div class="info">
+            <code>-webkit-appearance: textfield;</code> may force the spinner to show.
         </div>
     </div>
-    
-    <div class="spinner-container" id="spinner">
-        <div class="spinner"></div>
-        <div class="spinner-text">Loading...</div>
+
+    <!-- Solution 2: Custom spinner as fallback -->
+    <div class="solution">
+        <h2>Solution 2: Custom Spinner Fallback</h2>
+        <p>Custom buttons that work when native spinner doesn't:</p>
+        <div class="custom-spinner-wrapper">
+            <input type="number" 
+                   id="customNumber" 
+                   class="number-input" 
+                   value="0" 
+                   min="0" 
+                   max="100" 
+                   step="1">
+            <div class="custom-buttons">
+                <button class="custom-btn" id="upBtn">▲</button>
+                <button class="custom-btn" id="downBtn">▼</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Solution 3: Use inputmode for numeric keyboard -->
+    <div class="solution">
+        <h2>Solution 3: Better Keyboard with inputmode</h2>
+        <p>Using inputmode to ensure numeric keyboard:</p>
+        <input type="number" 
+               class="number-input tel-input" 
+               inputmode="numeric"
+               pattern="[0-9]*"
+               value="0" 
+               placeholder="Will show numeric keyboard">
+        <div class="info">
+            <code>inputmode="numeric" pattern="[0-9]*"</code> ensures numeric keyboard on iOS.
+        </div>
+    </div>
+
+    <!-- Solution 4: Hybrid approach -->
+    <div class="solution">
+        <h2>Solution 4: Hybrid Approach (Recommended)</h2>
+        <p>Combines native spinner with custom fallback:</p>
+        <div class="custom-spinner-wrapper">
+            <input type="number" 
+                   id="hybridNumber" 
+                   class="number-input force-spinner" 
+                   inputmode="numeric"
+                   pattern="[0-9]*"
+                   value="0" 
+                   min="0" 
+                   max="100" 
+                   step="1"
+                   placeholder="Best of both worlds">
+            <div class="custom-buttons">
+                <button class="custom-btn" id="hybridUp">▲</button>
+                <button class="custom-btn" id="hybridDown">▼</button>
+            </div>
+        </div>
     </div>
 
     <script>
-        // Get DOM elements
-        const spinner = document.getElementById('spinner');
-        const showBtn = document.getElementById('showSpinner');
-        const hideBtn = document.getElementById('hideSpinner');
-        const autoBtn = document.getElementById('autoSpinner');
-        const statusMessage = document.getElementById('statusMessage');
+        // Solution 2: Custom spinner functionality
+        const customNumber = document.getElementById('customNumber');
+        const upBtn = document.getElementById('upBtn');
+        const downBtn = document.getElementById('downBtn');
         
-        // Spinner functions
-        function showSpinner() {
-            spinner.classList.add('active');
-            updateStatus('Spinner is now visible', 'success');
+        upBtn.addEventListener('click', () => {
+            customNumber.stepUp();
+        });
+        
+        downBtn.addEventListener('click', () => {
+            customNumber.stepDown();
+        });
+        
+        // Solution 4: Hybrid approach
+        const hybridNumber = document.getElementById('hybridNumber');
+        const hybridUp = document.getElementById('hybridUp');
+        const hybridDown = document.getElementById('hybridDown');
+        
+        hybridUp.addEventListener('click', () => {
+            hybridNumber.stepUp();
+        });
+        
+        hybridDown.addEventListener('click', () => {
+            hybridNumber.stepDown();
+        });
+        
+        // Prevent form submission on button clicks
+        document.querySelectorAll('.custom-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+            });
+        });
+        
+        // Detect iOS Safari
+        function isIOS() {
+            return [
+                'iPad Simulator',
+                'iPhone Simulator',
+                'iPod Simulator',
+                'iPad',
+                'iPhone',
+                'iPod'
+            ].includes(navigator.platform) ||
+            (navigator.userAgent.includes("Mac") && "ontouchend" in document);
         }
         
-        function hideSpinner() {
-            spinner.classList.remove('active');
-            updateStatus('Spinner is now hidden', 'success');
+        // Add iOS-specific class for additional styling if needed
+        if (isIOS()) {
+            document.body.classList.add('ios-device');
+            console.log('iOS device detected - applying spinner fixes');
         }
-        
-        function autoSpinner() {
-            showSpinner();
-            updateStatus('Spinner will automatically hide in 3 seconds', 'success');
-            
-            setTimeout(() => {
-                hideSpinner();
-                updateStatus('Spinner automatically hidden after 3 seconds', 'success');
-            }, 3000);
-        }
-        
-        function updateStatus(message, type) {
-            statusMessage.textContent = message;
-            statusMessage.className = 'status ' + type;
-        }
-        
-        // Event listeners
-        showBtn.addEventListener('click', showSpinner);
-        hideBtn.addEventListener('click', hideSpinner);
-        autoBtn.addEventListener('click', autoSpinner);
-        
-        // Initial status message
-        updateStatus('Ready to test spinner. Click any button to start.', 'success');
     </script>
 </body>
 </html>
