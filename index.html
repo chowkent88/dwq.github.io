@@ -262,16 +262,17 @@
             transition: border 0.3s;
         }
         
-        /* FIX APPLIED: Removed '-webkit-appearance: none;' */
+        /* FIXED: iPhone number input styling */
         input[type="number"] {
-            -moz-appearance: textfield; /* Keeps the spinner hidden on Firefox */
+            -webkit-appearance: none;
+            -moz-appearance: textfield;
             appearance: textfield;
         }
         
-        /* Show spinners in WebKit browsers (This now takes effect on iPhone) */
+        /* Show spinners in WebKit browsers */
         input[type="number"]::-webkit-outer-spin-button,
         input[type="number"]::-webkit-inner-spin-button {
-            -webkit-appearance: inner-spin-button; 
+            -webkit-appearance: inner-spin-button;
             display: inline-block;
             opacity: 1;
             background: transparent;
@@ -607,6 +608,7 @@
     </style>
 </head>
 <body>
+    <!-- Header -->
     <header>
         <div class="container">
             <div class="header-content">
@@ -628,6 +630,7 @@
         </div>
     </header>
 
+    <!-- Hero Section -->
     <section class="hero">
         <div class="container">
             <h2>Premium Window Solutions</h2>
@@ -635,11 +638,14 @@
         </div>
     </section>
 
+    <!-- Main Content -->
     <div class="container">
         <div class="main-content">
+            <!-- Window Types Container -->
             <div class="window-types">
                 <h2>Select Window Series</h2>
                 <div class="window-categories">
+                    <!-- Vinyl Window Options -->
                     <div class="window-category">
                         <h3>Vinyl Window Series</h3>
                         <div class="series-options" id="vinyl-options">
@@ -666,6 +672,7 @@
                         </div>
                     </div>
                     
+                    <!-- Aluminum Window Options -->
                     <div class="window-category">
                         <h3>Aluminum Window Series</h3>
                         <div class="series-options" id="aluminum-options">
@@ -694,9 +701,11 @@
                 </div>
             </div>
             
+            <!-- Combined Measurements and Quote Container -->
             <div class="calculator-quote-container">
                 <h2>Calculate Quote</h2>
                 <div class="calculator-quote-content">
+                    <!-- Measurements Section -->
                     <div class="measurements-container">
                         <h3>Window Measurements</h3>
                         
@@ -725,6 +734,7 @@
                         </button>
                     </div>
                     
+                    <!-- Quote Section -->
                     <div class="quote-container">
                         <h3>Window Quote</h3>
                         
@@ -740,7 +750,8 @@
                                 </tr>
                             </thead>
                             <tbody id="quote-items">
-                                </tbody>
+                                <!-- Window items will be added here dynamically -->
+                            </tbody>
                         </table>
                         
                         <div class="total-cost">
@@ -753,6 +764,7 @@
         </div>
     </div>
 
+    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
