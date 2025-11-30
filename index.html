@@ -252,34 +252,49 @@
             transition: border 0.3s;
         }
         
-        /* Ensure number inputs show spinners on all devices */
+        /* FIXED: Number input styling for cross-browser compatibility */
         input[type="number"] {
-            -webkit-appearance: textfield;
             -moz-appearance: textfield;
             appearance: textfield;
         }
         
-        input[type="number"]::-webkit-inner-spin-button,
-        input[type="number"]::-webkit-outer-spin-button {
+        /* Show spinners in WebKit browsers */
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
             -webkit-appearance: inner-spin-button;
+            display: inline-block;
             opacity: 1;
-            height: 30px;
+            background: transparent;
+            border-width: 0;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            right: 0;
+            bottom: 0;
+            width: 20px;
+            height: 20px;
         }
         
-        /* Mobile-specific spinner styling */
-        @media (max-width: 768px) {
+        /* Ensure proper styling on iOS */
+        @supports (-webkit-touch-callout: none) {
             input[type="number"] {
                 -webkit-appearance: none;
-                -moz-appearance: textfield;
                 appearance: none;
             }
             
-            input[type="number"]::-webkit-inner-spin-button,
-            input[type="number"]::-webkit-outer-spin-button {
+            input[type="number"]::-webkit-outer-spin-button,
+            input[type="number"]::-webkit-inner-spin-button {
                 -webkit-appearance: inner-spin-button;
+                display: block;
                 opacity: 1;
-                height: 40px;
+                background: transparent;
+                border-width: 0;
+                margin: 0;
+                position: relative;
+                right: 0;
+                bottom: 0;
                 width: 30px;
+                height: 30px;
             }
         }
         
