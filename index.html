@@ -288,7 +288,7 @@
         }
         
         th, td {
-            padding: 6px 3px;
+            padding: 8px 4px;
             text-align: left;
             border-bottom: 1px solid #e9ecef;
             font-size: 0.8rem;
@@ -300,23 +300,32 @@
             color: #1a3a5f;
         }
         
-        /* Optimized column widths - Removed Dimensions column */
+        /* Optimized column widths with delete button in first column */
+        .action-col {
+            width: 10%;
+            min-width: 35px;
+            text-align: center;
+            padding-left: 8px;
+            padding-right: 2px;
+        }
+        
         .series-col {
-            width: 15%;
-            min-width: 65px;
-            padding-left: 4px;
+            width: 20%;
+            min-width: 70px;
+            padding-left: 2px;
+            padding-right: 2px;
         }
         
         .area-col {
             width: 15%;
             min-width: 55px;
             text-align: center;
-            padding-left: 1px;
-            padding-right: 1px;
+            padding-left: 2px;
+            padding-right: 2px;
         }
         
         .quantity-col {
-            width: 10%;
+            width: 12%;
             min-width: 40px;
             text-align: center;
             padding-left: 2px;
@@ -332,19 +341,11 @@
         }
         
         .total-col {
-            width: 18%;
+            width: 20%;
             min-width: 75px;
             text-align: center;
             padding-left: 2px;
-            padding-right: 2px;
-        }
-        
-        .action-col {
-            width: 12%;
-            min-width: 45px;
-            text-align: center;
-            padding-left: 2px;
-            padding-right: 4px;
+            padding-right: 8px;
         }
         
         .delete-btn {
@@ -656,12 +657,12 @@
                 <table>
                     <thead>
                         <tr>
+                            <th class="action-col"></th>
                             <th class="series-col">Series</th>
                             <th class="area-col">Area</th>
                             <th class="quantity-col">Qty</th>
                             <th class="price-col">Price/m²</th>
                             <th class="total-col">Total</th>
-                            <th class="action-col"></th>
                         </tr>
                     </thead>
                     <tbody id="quote-items">
@@ -819,12 +820,12 @@
                     const row = document.createElement('tr');
                     
                     row.innerHTML = `
+                        <td class="action-col"><button class="delete-btn" data-index="${index}"><i class="fas fa-times"></i></button></td>
                         <td class="series-col">${window.series}</td>
                         <td class="area-col">${window.area} m²</td>
                         <td class="quantity-col">${window.quantity}</td>
                         <td class="price-col">$${window.pricePerM2.toFixed(2)}</td>
                         <td class="total-col">$${window.total}</td>
-                        <td class="action-col"><button class="delete-btn" data-index="${index}"><i class="fas fa-times"></i></button></td>
                     `;
                     
                     quoteItems.appendChild(row);
